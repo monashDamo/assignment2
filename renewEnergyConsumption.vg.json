@@ -1,0 +1,20 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "width": 300, "height": 200,
+    "title": "Renewable Energy Usage (PJ) over time (2015-2022)",
+    "data": {"url": "Files/REnergyConsumpReshaped.csv"},
+    "mark": "area",
+    "encoding": {
+      "x": {
+        "timeUnit": "year", "field": "Year", "title": "Year"
+      },
+      "y": {
+        "aggregate": "sum", "field": "Amount_(PJ)", "title":"Amount (PJ)"
+      },
+      "color": {
+        "field": "Fuel_Type", "title": "Fuel Type",
+        "scale": {"scheme": "paired"}
+      }
+    }
+  }
+  

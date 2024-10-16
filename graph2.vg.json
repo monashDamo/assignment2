@@ -1,0 +1,72 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "description": "A ranged dot plot that uses 'layer' to convey changing life expectancy for the five most populous countries (between 1955 and 2000).",
+    "data": {"url": "Files/powerStationsCloseRearrangedThinned.csv"},
+    "width":500,
+    "background":"transparent",
+    "transform": [
+        
+        {
+          "calculate": "toNumber(datum.specificYear)", "as": "intYear"
+        },
+        {
+          "filter": {"field": "specificYear", "range": [2000, 2080]}
+        },
+        {
+          "filter": "datum.Nameplate_Capacity > 200"
+        }
+    ],
+    
+    "encoding": {
+      
+      "x": {
+        "field": "specificYear",
+        "type": "quantitative",
+        "scale": {"domain": [2000,2080]},
+        "title":"Year"
+      },
+      "y": {
+        "field": "Nameplate_Capacity",
+        "type": "quantitative",
+        "title": "Capacity (PJ)",
+        "scale": {"domain": [150,1000]}
+      }
+    },
+    "layer": [
+      {
+        "mark": "line",
+        "encoding": {
+          "detail": {
+            "field": "Nameplate_Capacity",
+            "type": "quantitative"
+          },
+          "color": {"field":"Fuel_Bucket_Summary"},
+          "opacity":{"value":0.4}
+        }
+      },
+      {
+        "mark": {
+          "type": "point",
+          "filled": true
+        },
+        "encoding": {
+          "color": {
+            "field": "Fuel_Bucket_Summary",
+            "type": "nominal",
+            "title": "Fuel Type"
+          },
+          "size": {"value": 50},
+          "opacity": {"value": 1}
+        }
+      },
+      {
+        "mark": { "type": "line", "color": "#37e0cf", "size": 3},
+        "encoding": {
+          "x": {
+            "datum": 2050
+          }
+        }
+      }
+    ]
+  }
+  

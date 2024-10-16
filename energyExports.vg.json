@@ -1,0 +1,29 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+    "data": {"url": "Files/energyExports.csv"},
+    "title":"Export of fuel by energy (PJ) and fuel type",
+    "background":"transparent",
+    "mark": "bar",
+    "encoding": {
+      "x": {
+        "field": "",
+        "type": "nominal",
+        "title": "Export"
+      },
+      "y": {
+          "field": "Value",
+          "aggregate": "sum",
+          "type": "quantitative",
+          "title": "PetaJoules (PJ)"
+      },
+      "color": {
+          "field":"Exports",
+          "type": "nominal",
+        "title": "Fuel Source"
+      },
+      "tooltip":[
+          {"field": "Exports", "type": "nominal", "title": "Fuel Source"},
+          {"field": "Value", "type": "nominal", "title": "Amount (PJ)"}
+      ]
+    }
+  }

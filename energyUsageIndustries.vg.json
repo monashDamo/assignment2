@@ -1,0 +1,31 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {"url": "Files/energyIndustryUsageReshaped.csv"},
+  "title":"Consumption of energy (PJ) in various industries",
+  "width":400,
+  "height":400,
+  "background":"transparent",
+  "mark": "bar",
+  "encoding": {
+    "y": {
+      "field": "Industry",
+      "type": "nominal",
+      "title": "Industries"
+    },
+    "x": {
+        "field": "value",
+        "aggregate": "sum",
+        "type": "quantitative",
+        "title": "PetaJoules (PJ)"
+    },
+    "color": {
+        "field":"variable",
+        "type": "nominal",
+      "title": "Fuel Source"
+    },
+    "tooltip":[
+        {"field": "variable", "type": "nominal", "title": "Fuel Source"},
+        {"field": "value", "type": "nominal", "title": "Amount (PJ)"}
+    ]
+  }
+}
